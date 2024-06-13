@@ -1,3 +1,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Big screen */
+.swiper {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+  
+.bannerModel{
+  background-image: url('https://i.postimg.cc/cCdnTQC8/model.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+
+.slideBanner1{
+  background-image: url('https://i.postimg.cc/J7ThhFBs/mit.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+.slideBanner2{
+  background-image: url('https://i.postimg.cc/zDwcSmkf/caltech.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+.slideBanner3{
+  background-image: url('https://i.postimg.cc/DwNjy77x/Tokyo-University.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+.slideBanner4{
+  background-image: url('https://i.postimg.cc/qqhKMHQd/toronto.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .swiper-slide:nth-child(1n) {
+    background-color: rgb(253, 224, 71);
+  }
+  
+  .swiper-slide:nth-child(2n) {
+    background-color: rgb(253, 224, 71);
+  }
+  
+  .swiper-slide:nth-child(3n) {
+    background-color: rgb(253, 224, 71);
+  }
+  
+  .swiper-slide:nth-child(4n) {
+    background-color: rgb(253, 224, 71);
+  }
+
+  
+  

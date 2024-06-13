@@ -5,6 +5,9 @@ const MainLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
+            <div className='h-[100px]'>
+
+            </div>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>

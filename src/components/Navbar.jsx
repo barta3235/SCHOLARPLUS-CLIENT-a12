@@ -28,7 +28,7 @@ const Navbar = () => {
     </>
     return (
         <div>
-            <header className="p-4 dark:bg-gray-100 dark:text-gray-800">
+            <header className="p-4 dark:bg-gray-100 dark:text-gray-800 fixed w-full z-20">
                 <div className="flex justify-between h-16 mx-auto">
                     <Link to='/' className="flex items-center gap-3">
                         <img className="w-[60px]" src={webLogo} alt="" />
