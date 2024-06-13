@@ -20,7 +20,7 @@ const Banner = () => {
                 </div>
             </div>
 
-            <div className='h-[580px] w-full md:w-1/2 hidden md:flex'>
+            <div className='h-[300px] mt-[10px] md:h-[580px] w-full md:w-1/2 '>
                 <Swiper
                     grabCursor={true}
                     effect={'creative'}
