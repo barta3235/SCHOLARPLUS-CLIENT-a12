@@ -17,7 +17,6 @@ const SocialLogin = () => {
     const handelSocialLogin = () => {
         googleSignIn()
             .then(async (result) => {
-
                 const userInfo = {
                     name: result?.user?.displayName,
                     photo: result?.user?.photoURL,

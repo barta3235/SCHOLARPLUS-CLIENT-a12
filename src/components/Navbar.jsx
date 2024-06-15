@@ -19,12 +19,12 @@ const Navbar = () => {
     }
 
     const navItems = <>
-        <li className="flex items-center px-4 -mb-1 border-b-2 dark:border-"><Link to='/'>Home</Link></li>
-        <li className="flex items-center px-4 -mb-1 border-b-2 dark:border-"><Link to='/allscholarships'>Scholarships</Link></li>
-        {user? <li className="flex items-center px-4 -mb-1 border-b-2 dark:border-"><Link to='/dashboard/user'>Dashboard</Link></li>:''}
-        {user?.role==='admin'?<li className="flex items-center px-4 -mb-1 border-b-2 dark:border-"><Link to='/dashboard/admin'>Dashboard</Link></li>:''}
-        {user?'':<li className="flex items-center px-4 -mb-1 border-b-2 dark:border-"><Link to='/login'>Login</Link></li>}
-        {user? <li onClick={handleLogout} className="flex items-center px-4 -mb-1 border-b-2 dark:border- text-2xl"><Link><IoIosLogOut></IoIosLogOut></Link></li>:''}
+        <li className="flex items-center px-4 -mb-1 border-b-2 font-medium dark:border-"><Link to='/'>Home</Link></li>
+        <li className="flex items-center px-4 -mb-1 border-b-2 font-medium dark:border-"><Link to='/allscholarships'>Scholarships</Link></li>
+        {user? <li className="flex items-center px-4 -mb-1 font-medium border-b-2 dark:border-"><Link to='/dashboard/user'>Dashboard</Link></li>:''}
+        {user?.role==='admin'?<li className="flex items-center font-medium px-4 -mb-1 border-b-2 dark:border-"><Link to='/dashboard/admin'>Dashboard</Link></li>:''}
+        {user?'':<li className="flex items-center px-4 -mb-1 border-b-2 font-medium dark:border-"><Link to='/login'>Login</Link></li>}
+        {user? <li onClick={handleLogout} className="flex items-center font-medium px-4 -mb-1 border-b-2 dark:border- text-2xl"><Link><IoIosLogOut></IoIosLogOut></Link></li>:''}
     </>
     return (
         <div>
@@ -56,11 +56,11 @@ const Navbar = () => {
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
             <div className="modal" role="dialog">
                 <div className="modal-box flex flex-col items-center space-y-4 font-medium text-[20px]">
-                    <Link className="pb-2 border-b-2">Home</Link>
+                    <Link className="pb-2 font-medium border-b-2">Home</Link>
                     <Link className="pb-2 border-b-2" to='/allscholarships'>Scholarships</Link>
-                    {user?<Link className="pb-2 border-b-2" to='/dashboard/user'>Dashboard</Link>:''}
-                    {user?.role==='admin'?<Link className="pb-2 border-b-2" to='/dashboard/admin'>Dashboard</Link>:''}
-                    {user?'':<Link className="pb-2 border-b-2" to='/login'>Login</Link>}
+                    {user?<Link className="pb-2 font-medium border-b-2" to='/dashboard/user'>Dashboard</Link>:''}
+                    {user?.role==='admin'?<Link className="pb-2 font-medium border-b-2" to='/dashboard/admin'>Dashboard</Link>:''}
+                    {user?'':<Link className="pb-2 font-medium border-b-2" to='/login'>Login</Link>}
                     {user?<Link onClick={handleLogout}><IoIosLogOut></IoIosLogOut></Link>:''}
                 </div>
                 <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>

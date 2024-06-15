@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 const HOSTING_KEY = import.meta.env.VITE_HOSTING_API;
-const IMAGE_HOSTING_API = `https://api.imgbb.com/1/upload?&key=${HOSTING_KEY}`;
+const IMAGE_HOSTING_API = `https://api.imgbb.com/1/upload?key=${HOSTING_KEY}`;
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(true);

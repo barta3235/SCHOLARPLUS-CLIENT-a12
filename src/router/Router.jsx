@@ -5,6 +5,7 @@ import MainLayout from "../MainLayout/MainLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AddScholarship from "../pages/Moderator/AddScholarship";
 
 
 
@@ -24,6 +25,10 @@ import Register from "../pages/Register";
         {
             path:'/register',
             element:<Register></Register>
+        },
+        {
+          path:'/dashboard/addScholarship',
+          element:<AddScholarship></AddScholarship>
         }
       ]
     },
