@@ -48,18 +48,22 @@
   
   .swiper-slide:nth-child(1n) {
     background-color: rgb(253, 224, 71);
+    border-radius:20px;
   }
   
   .swiper-slide:nth-child(2n) {
     background-color: rgb(253, 224, 71);
+    border-radius:20px;
   }
   
   .swiper-slide:nth-child(3n) {
     background-color: rgb(253, 224, 71);
+    border-radius:20px;
   }
   
   .swiper-slide:nth-child(4n) {
     background-color: rgb(253, 224, 71);
+    border-radius:20px;
   }
 
   .bh:hover{

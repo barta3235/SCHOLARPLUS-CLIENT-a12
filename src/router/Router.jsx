@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddScholarship from "../pages/Moderator/AddScholarship";
+import ModeratorRoute from "./ModeratorRoute";
 
 
 
@@ -28,7 +29,7 @@ import AddScholarship from "../pages/Moderator/AddScholarship";
         },
         {
           path:'/dashboard/addScholarship',
-          element:<AddScholarship></AddScholarship>
+          element:<ModeratorRoute><AddScholarship></AddScholarship></ModeratorRoute>
         }
       ]
     },
