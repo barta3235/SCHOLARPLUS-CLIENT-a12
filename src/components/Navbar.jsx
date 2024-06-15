@@ -60,7 +60,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <button className="flex justify-end md:hidden items-center">
-                        <label htmlFor="my_modal_7" className="btn"><CiMenuFries></CiMenuFries></label>
+                        <label htmlFor="my_modal_7" className="btn bg-yellow-200 hover:bg-yellow-300 border-none"><CiMenuFries className="text-[20px]"></CiMenuFries></label>
                     </button>
                 </div>
             </header>
