@@ -39,7 +39,7 @@ const Navbar = () => {
                         </div>
                         <ul className="flex items-center gap-2 md:hidden">
 
-                            <div className="avatar border-4 rounded-full border-yellow-300">
+                            <div className={`avatar ${user ? 'border-4 border-yellow-300' : 'border-4 border-slate-400'} rounded-full`}>
                                 <div className="w-10 h-10 rounded-full">
                                     <img src={user?.photoURL ? user?.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
                                 </div>

@@ -7,7 +7,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddScholarship from "../pages/Moderator/AddScholarship";
 import ModeratorRoute from "./ModeratorRoute";
-
+import AllScholarship from '../pages/allScholarship/AllScholarship'
 
 
   const router = createBrowserRouter([
@@ -26,6 +26,10 @@ import ModeratorRoute from "./ModeratorRoute";
         {
             path:'/register',
             element:<Register></Register>
+        },
+        {
+             path:'/allScholarships',
+             element:<AllScholarship></AllScholarship>
         },
         {
           path:'/dashboard/addScholarship',

@@ -35,13 +35,15 @@ const AddScholarship = () => {
         const servicecharge = form.servicecharge.value
         const description= form.description.value
         const universityname = form.universityname.value
-        const universityimage = res.data.display_url;
+        const universityimage = res.data.data.display_url;
         const country = form.country.value;
         const city = form.city.value;
         const worldranking = form.worldranking.value
         const postdate = form.postdate.value;
         const applicationdeadline = form.applicationdeadline.value;
         const email = form.email.value;
+
+        console.log(universityimage);
 
         const newScholarship = {
             scholarshipname,
