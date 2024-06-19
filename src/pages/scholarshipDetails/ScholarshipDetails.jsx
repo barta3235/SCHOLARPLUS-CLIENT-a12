@@ -52,7 +52,7 @@ const ScholarshipDetails = () => {
                             <div className="md:w-1/2 text-start">
                                 <span className="block text-[18px] font-medium tracking-widest cursor-pointer uppercase dark:text-violet-600 mb-4">Scholarship: <span className="font-normal">{scholarshipname}</span></span>
                                 <span className="block text-[18px] font-medium tracking-widest uppercase dark:text-violet-600 mb-6">Scholarship Category: <span className="font-normal">{scholarshipCategory}</span></span>
-                                <span className="block text-[18px] font-medium tracking-widest uppercase dark:text-violet-600 mb-4"><span className="text-yellow-400">About the Scholarship</span> : <br /> <span className="font-normal text-xs">{description}</span></span>
+                                <span className="block text-[18px] font-medium tracking-widest uppercase dark:text-violet-600 mb-4"><span className="text-yellow-400 font-semibold">About the Scholarship</span> : <br /> <h1 className="font-medium text-justify leading-7 text-xs">{description}</h1></span>
                             </div>
 
 
