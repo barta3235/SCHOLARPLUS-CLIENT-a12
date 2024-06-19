@@ -14,13 +14,13 @@ const Banner = () => {
     return (
         <div className="flex md:flex-row flex-col items-center mx-[5px] md:mx-[50px]">
             <div className='h-[500px] w-full md:w-1/2 bg-slate-100 rounded-md bannerModel flex flex-col justify-center items-center'>
-                <div className='bg-black bg-opacity-35 w-full h-full flex flex-col justify-center pl-[5px] md:pl-5 text-white'>
+                <div className='bg-black bg-opacity-35 w-full h-full flex flex-col justify-center pl-[5px] md:pl-5 text-white tracking-wide'>
                     <h1 className='text-3xl md:text-5xl font-medium'>Empowering Dreams</h1>
                     <h1 className='text-[20px] mt-5 justify-start font-medium'>Unlock Your Potential with Our Scholarships</h1>
                 </div>
             </div>
 
-            <div className='h-[300px] mt-[10px] md:h-[580px] w-full md:w-1/2 bh'>
+            <div className='h-[300px] mt-[10px] md:h-[580px] w-full md:w-1/2 bh tracking-wide'>
                 <Swiper
                     grabCursor={true}
                     effect={'creative'}

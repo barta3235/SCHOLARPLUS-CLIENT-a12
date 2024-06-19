@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const EachCard_Top6 = ({ eachScholarship }) => {
     const [click, setClick] = useState(false);
 
-    const { _id,subjectcategory, scholarshipCategory, applicationfee, universityname, universityimage, country, city, applicationdeadline } = eachScholarship
+    const { _id,subjectcategory, scholarshipname, scholarshipCategory, applicationfee, universityname, universityimage, country, city, applicationdeadline,degree } = eachScholarship
 
     return (
         <div>
@@ -15,7 +15,8 @@ const EachCard_Top6 = ({ eachScholarship }) => {
                 <img src={universityimage} alt="" className="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500" />
                 <div className="mt-6 mb-2">
                     <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-2">{universityname}</span>
-                    <h2 className="text-xl font-semibold tracking-wide mb-2">{subjectcategory}</h2>
+                    <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-2">{degree}</span>
+                    <h2 className="text-xl font-semibold tracking-widest mb-2">{subjectcategory}</h2>
                 </div>
 
                 <button className="w-[30px] bg-yellow-300 rounded-md" onClick={() => setClick(!click)}><MdOutlineKeyboardArrowRight className="text-[30px]" /></button>
@@ -25,6 +26,7 @@ const EachCard_Top6 = ({ eachScholarship }) => {
                      <img src={universityimage} alt="" className="object-cover object-center w-full rounded-md h-20 dark:bg-gray-500" />
                     <div className="mt-6 mb-2">
                         <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-3">Subject Category: {subjectcategory}</span>
+                        <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-3">Subject: {scholarshipname}</span>
                         <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-3">Scholarship Category: {scholarshipCategory}</span>
                         <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-3">Application Fee: ${applicationfee}</span>
                         <hr className="my-3" />

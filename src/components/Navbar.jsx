@@ -30,7 +30,7 @@ const Navbar = () => {
         <div>
             <header className="p-4 dark:bg-gray-100 dark:text-gray-800 fixed w-full z-20">
                 <div className="flex justify-between h-16 mx-auto">
-                    <div className="flex gap-5 items-center">
+                    <div className="flex gap-5 items-center tracking-widest">
                         <div>
                             <Link to='/' className="flex items-center gap-3">
                                 <img className="w-[60px] rounded-lg" src={webLogo} alt="" />
@@ -47,7 +47,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div>
-                        <ul className="items-stretch hidden space-x-3 md:flex">
+                        <ul className="items-stretch hidden space-x-3 md:flex tracking-widest">
                             {navItems}
                             {user ? <div className="flex items-center justify-center -mb-1 border-b-2 dark:border-">
                                 <h1 className="font-medium px-4 ">{user?.displayName}</h1>
@@ -66,7 +66,7 @@ const Navbar = () => {
             </header>
             {/* MODAL */}
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
-            <div className="modal" role="dialog">
+            <div className="modal tracking-widest" role="dialog">
                 <div className="modal-box flex flex-col items-center space-y-4 font-medium text-[20px]">
                     <Link className="pb-2 font-medium border-b-2">Home</Link>
                     <Link className="pb-2 border-b-2" to='/allscholarships'>Scholarships</Link>

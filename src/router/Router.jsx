@@ -11,12 +11,14 @@ import AllScholarship from '../pages/allScholarship/AllScholarship'
 import ScholarshipDetails from "../pages/scholarshipDetails/ScholarshipDetails";
 import UserPrivateRoute from './UserPrivateRoute'
 import PaymentInitial from "../pages/payment/PaymentInitial";
+import ErrorPage from "../pages/ErrorPage";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
