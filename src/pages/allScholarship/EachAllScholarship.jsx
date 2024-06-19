@@ -8,7 +8,7 @@ const EachAllScholarship = ({ eachScholarship }) => {
 
     const [click, setClick] = useState(false);
 
-    const { _id, subjectcategory, scholarshipCategory, applicationfee, universityname, universityimage, country, city, applicationdeadline } = eachScholarship
+    const { _id, subjectcategory, scholarshipCategory, applicationfee, universityname, universityimage, country, city, applicationdeadline,degree } = eachScholarship
 
     return (
         <div>
@@ -16,6 +16,7 @@ const EachAllScholarship = ({ eachScholarship }) => {
                 <img src={universityimage} alt="" className="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500" />
                 <div className="mt-6 mb-2">
                     <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-2">{universityname}</span>
+                    <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-2">{degree}</span>
                     <h2 className="text-xl font-semibold tracking-wide mb-2">{subjectcategory}</h2>
                 </div>
 
