@@ -61,7 +61,7 @@ const AddScholarship = () => {
             worldranking,
             postdate,
             applicationdeadline,
-            email
+            email,
         }
 
         //sending to database
@@ -76,13 +76,6 @@ const AddScholarship = () => {
             setLoading(false);
             e.target.reset()
         }
-
-
-
-
-
-
-
 
     }
 

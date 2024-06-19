@@ -39,7 +39,7 @@ const EachCard_Top6 = ({ eachScholarship }) => {
                     </div>
                     <div className="flex justify-between items-center">
                         <button className="w-[30px] bg-yellow-300 rounded-md" onClick={() => setClick(!click)}><MdOutlineKeyboardArrowLeft className="text-[30px]" /></button>
-                        <Link to={`allscholarships/${_id}`}><button className="border px-2 py-1 hover:bg-yellow-300 hover:font-medium rounded-md border-yellow-300 ">Details</button></Link>
+                        <Link to={`/scholarshipDetails/${_id}`}><button className="border px-2 py-1 hover:bg-yellow-300 hover:font-medium rounded-md border-yellow-300 ">Details</button></Link>
                     </div>
                 </div> : ''
             }

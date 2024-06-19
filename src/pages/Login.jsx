@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 const Login = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const {signInUser}=useAuth();
     const [errorLogin,setErrorLogin]=useState('');
     const location=useLocation();
@@ -23,7 +23,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            navigate(location.state? location.state:'/')
+            navigate(location.state? location.state :'/')
         })
         .catch((error)=>{
             if(error.message==='Firebase: Error (auth/invalid-credential).'){

@@ -5,7 +5,7 @@ import EachAllScholarship from "./EachAllScholarship";
 
 const AllScholarship = () => {
     const axiosPublic=useAxiosPublic();
-
+    
     const { data: allScholarships = [] } = useQuery({
         queryKey: ['allscholarship'],
         queryFn: async () => {
@@ -13,8 +13,8 @@ const AllScholarship = () => {
              return res.data;
         }
     })
-
-
+    
+    
     return (
         <div className="mx-[5px] md:mx-[50px] mt-[30px]">
             <div className="flex items-center mb-[50px]">

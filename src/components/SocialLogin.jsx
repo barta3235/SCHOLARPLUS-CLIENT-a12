@@ -32,9 +32,17 @@ const SocialLogin = () => {
                         timer: 1500
                     });
                     navigate(location.state ? location.state : '/')
-                }if(res.data.insertedId===null){
-                    console.log('1')
+                } else {
+                    Swal.fire({
+                        icon: "success",
+                        title: `Log in successful`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate(location.state ? location.state : '/')
                 }
+
+
             })
             .catch((error) => {
                 setErrorLogin(error.message)
