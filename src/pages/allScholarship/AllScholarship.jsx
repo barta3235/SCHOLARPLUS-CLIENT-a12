@@ -61,6 +61,7 @@ const AllScholarship = () => {
 
 
     return (
+
         <div className="mx-[5px] md:mx-[50px] mt-[30px] mb-[50px]">
             <form onSubmit={handleSearch} className="flex items-center mb-[50px]">
                 <CiSearch className="absolute ml-2 text-[20px]" />
@@ -68,17 +69,13 @@ const AllScholarship = () => {
                 <input type="submit" className="border bg-yellow-200 border-l-0 rounded-r-md py-2 px-2 font-medium cursor-pointer" value="Search" />
             </form>
 
-            {
-                allScholarships
-                    ?
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] mb-[80px]">
-                        {
-                            allScholarships?.map((eachScholarship) => <EachAllScholarship key={eachScholarship._id} eachScholarship={eachScholarship}></EachAllScholarship>)
-                        }
-                    </div>
-                    :
-                    <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars text-yellow-300 w-24"></span></div>
-            }
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] mb-[80px]">
+                {
+                    allScholarships?.map((eachScholarship) => <EachAllScholarship key={eachScholarship._id} eachScholarship={eachScholarship}></EachAllScholarship>)
+                }
+            </div>
+
 
             {/* pagination */}
             <div className="flex justify-center items-center gap-5">

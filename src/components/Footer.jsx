@@ -11,11 +11,11 @@ const Footer = () => {
                     <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
                         <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-1 md:justify-start items-center">
                             <img className="w-[40px] h-[40px] rounded-lg" src={webLogo} alt="" />
-                            <h1 className="flex items-center gap-2"><h1 data-aos="fade-right"></h1><span data-aos="fade-down" className="self-center text-[25px]  font-medium tracking-widest "><span>Scholar</span></span><FaPlus className="text-[30px] text-yellow-300"></FaPlus></h1>
+                            <h1 className="flex items-center gap-2"><h1 data-aos="fade-right"></h1><span data-aos="fade-down" className="self-center text-[25px]  font-medium tracking-wide "><span>Scholar</span></span><FaPlus className="text-[30px] text-yellow-300"></FaPlus></h1>
                         </a>
                     </div>
                     <div className="col-span-6 md:text-left md:col-span-3 text-start mt-[15px] font-medium">
-                        <ul className="flex flex-col md:flex-row justify-around tracking-widest">
+                        <ul className="flex flex-col md:flex-row justify-around tracking-wide">
                             <li className="mb-[7px]">
                                 <Link to="/">Home</Link>
                             </li>
@@ -28,7 +28,7 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="grid justify-center lg:justify-between tracking-widest">
+                <div className="grid justify-center lg:justify-between tracking-wider">
                     <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6  font-medium">
                         <span>©2024 All rights reserved</span>
                         <a rel="noopener noreferrer" href="#">
