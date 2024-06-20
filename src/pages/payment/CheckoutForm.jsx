@@ -72,11 +72,25 @@ const CheckoutForm = ({ scholarshipData }) => {
             if (paymentIntent.status === 'succeeded') {
                 console.log('transaction id: ', paymentIntent.id)
                 setTransactionId(paymentIntent.id)
-                Swal.fire({
-                    icon: "success",
-                    title: "Payment is Successful",
-                    text: `Transaction Id: ${transactionId}`,
-                });
+
+                //saving tranasction info for security incase user has to reload
+                const transactionInfo={
+                    email:user?.email,
+                    name:user?.displayName,
+                    transactionId:transactionId,
+                    amount:paymentIntent.amount
+                }
+                console.log(transactionInfo)
+                axiosSecure.post('/transactionInfo',transactionInfo)
+                .then(res=>{
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            icon: "success",
+                            title: "Payment is Successful",
+                            text: `Transaction Id: ${transactionId}`,
+                        });
+                    }
+                })
             }
         }
 
@@ -112,10 +126,13 @@ const CheckoutForm = ({ scholarshipData }) => {
                 </button>
                 <p className="tracking-wider text-red-700 font-medium">{error}</p>
                 {
-                    transactionId && <p className="tracking-wider text-green-800 font-normal mt-2 pl-1"><span className="font-bold">Transaction Id:</span> {transactionId}</p>
+                    transactionId && <p className="tracking-wider text-green-800 font-normal mt-2 pl-1 mb-[50px]"><span className="font-bold">Transaction Id:</span> {transactionId}</p>
                 }
-
             </form>
+
+            <div>
+                
+            </div>
         </div>
     );
 };
