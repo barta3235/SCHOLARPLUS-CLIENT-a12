@@ -12,7 +12,9 @@ import ScholarshipDetails from "../pages/scholarshipDetails/ScholarshipDetails";
 import UserPrivateRoute from './UserPrivateRoute'
 import PaymentInitial from "../pages/payment/PaymentInitial";
 import ErrorPage from "../pages/ErrorPage";
-
+import Dashboard from "../MainLayout/Dashboard";
+import MyProfile from "../DashboardPages/MyProfile";
+import MyApplication from '../DashboardPages/MyApplication'
 
 const router = createBrowserRouter([
   {
@@ -25,24 +27,24 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: '/login',
+        path: 'login',
         element: <Login></Login>
       },
       {
-        path: '/register',
+        path: 'register',
         element: <Register></Register>
       },
       {
-        path: '/allScholarships',
+        path: 'allScholarships',
         element: <AllScholarship></AllScholarship>
       },
       {
-        path: '/scholarshipDetails/:id',
+        path: 'scholarshipDetails/:id',
         element: <UserPrivateRoute><ScholarshipDetails></ScholarshipDetails></UserPrivateRoute>,
         loader:({params})=>fetch(`http://localhost:5000/allScholarship/${params.id}`)
       },
       {
-         path: '/toPaymentFromDetail/:id',
+         path: 'toPaymentFromDetail/:id',
          element:<UserPrivateRoute><PaymentInitial></PaymentInitial></UserPrivateRoute>
       },
       {
@@ -51,6 +53,20 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:'/dashboard',
+    element:<UserPrivateRoute><Dashboard></Dashboard></UserPrivateRoute>,
+    children:[
+        {
+          path:'myProfile',
+          element:<MyProfile></MyProfile>
+        },
+        {
+          path:'myApplication',
+          element:<MyApplication></MyApplication>
+        }
+    ]
+  }
 ]);
 
 export default router

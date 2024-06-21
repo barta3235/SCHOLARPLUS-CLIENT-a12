@@ -78,25 +78,12 @@ const CheckoutForm = ({ scholarshipData }) => {
                 setTransactionId(paymentIntent.id)
                 setPayingAmount(paymentIntent.amount)
                 setLoading(false);
-                //saving tranasction info for security incase user has to reload
-                const transactionInfo = {
-                    email: user?.email,
-                    name: user?.displayName,
-                    transactionId: transactionId,
-                    amount: paymentIntent.amount
-                }
-                console.log(transactionInfo)
-                axiosSecure.post('/transactionInfo', transactionInfo)
-                    .then(res => {
-                        if (res.data.insertedId) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Payment is Successful",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                        }
-                    })
+                Swal.fire({
+                    icon: "success",
+                    title: "Payment is Successful",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
             }
         }
 

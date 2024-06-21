@@ -45,7 +45,7 @@ const AllScholarship = () => {
         }
     })
 
-    const { data: allScholarships = [] } = useQuery({
+    const { data: allScholarships} = useQuery({
         queryKey: ['allscholarship', searchText, currentPage, itemsPerPage],
         queryFn: async () => {
             const res = await axiosPublic.get(`/allScholarship?search=${searchText}&page=${currentPage}&size=${itemsPerPage}`);
@@ -62,6 +62,8 @@ const AllScholarship = () => {
 
     return (
 
+        allScholarships
+        ?
         <div className="mx-[5px] md:mx-[50px] mt-[30px] mb-[50px]">
             <form onSubmit={handleSearch} className="flex items-center mb-[50px]">
                 <CiSearch className="absolute ml-2 text-[20px]" />
@@ -98,6 +100,8 @@ const AllScholarship = () => {
                 </div>
             </div>
         </div>
+        :
+        <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars text-yellow-300 w-24"></span></div>
     );
 };
 
