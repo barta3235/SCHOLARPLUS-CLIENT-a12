@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import PostPaymentForm from "./PostPaymentForm";
 const CheckoutForm = ({ scholarshipData }) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const { user } = useAuth();
     const [transactionId, setTransactionId] = useState('');
-
+    const [payingAmount, setPayingAmount] = useState('');
+    const [loading, setLoading] = useState(null);
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
@@ -25,6 +27,7 @@ const CheckoutForm = ({ scholarshipData }) => {
 
 
     const handleSubmit = async (event) => {
+        setLoading(true)
         event.preventDefault();
 
         if (!stripe | !elements) {
@@ -66,13 +69,15 @@ const CheckoutForm = ({ scholarshipData }) => {
             console.log(confirmError)
             setError(confirmError.message)
             setTransactionId('');
+            setPayingAmount('')
         } else {
             setError('');
             console.log('payment intent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
                 console.log('transaction id: ', paymentIntent.id)
                 setTransactionId(paymentIntent.id)
-
+                setPayingAmount(paymentIntent.amount)
+                setLoading(false);
                 //saving tranasction info for security incase user has to reload
                 const transactionInfo = {
                     email: user?.email,
@@ -87,8 +92,8 @@ const CheckoutForm = ({ scholarshipData }) => {
                             Swal.fire({
                                 icon: "success",
                                 title: "Payment is Successful",
-                                showConfirmButton:false,
-                                timer:1500,
+                                showConfirmButton: false,
+                                timer: 1500,
                             });
                         }
                     })
@@ -99,8 +104,11 @@ const CheckoutForm = ({ scholarshipData }) => {
 
     }
 
+
+
     return (
         <div className="mb-[100px]">
+
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{
@@ -131,17 +139,22 @@ const CheckoutForm = ({ scholarshipData }) => {
                 }
             </form>
 
-            <div>
-                {
-                    transactionId
-                        ?
-                        <div>
+            {
+                loading
+                    ?
+                    <span className="loading loading-spinner loading-md text-yellow-300"></span>
+                    :
+                    <div>
+                        {
+                            transactionId
+                                ?
+                                <PostPaymentForm scholarshipData={scholarshipData} transId={transactionId} payingAmount={payingAmount}></PostPaymentForm>
+                                :
+                                ''
+                        }
+                    </div>
 
-                        </div>
-                        :
-                        ''
-                }
-            </div>
+            }
         </div>
     );
 };

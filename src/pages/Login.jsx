@@ -63,7 +63,7 @@ const Login = () => {
                     </div>
                     <div className="space-y-2">
                         <div>
-                            <input type="submit" value='Log in' className="w-full px-8 py-3 font-semibold border rounded-lg shadow-md hover:border-2 hover:border-yellow-300"></input>
+                            <input type="submit" value='Log in' className="w-full px-8 py-3 font-semibold border rounded-lg shadow-md hover:border-2 cursor-pointer hover:border-yellow-300"></input>
                             <p className="pt-[5px] text-[12px] font-medium text-red-700">{errorLogin}</p>
                         </div>
                         <div>

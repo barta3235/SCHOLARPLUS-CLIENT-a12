@@ -123,7 +123,7 @@ const Register = () => {
                     </div>
                     <div className="space-y-2">
                         <div>
-                            <input type="submit" value='Sign Up' className="cursor-pointer w-full px-8 py-3 font-semibold border rounded-lg shadow-md hover:border-2 hover:border-yellow-300"></input>
+                            <input type="submit" value='Sign Up' className="cursor-pointer w-full px-8 py-3 cursor-pointer font-semibold border rounded-lg shadow-md hover:border-2 hover:border-yellow-300"></input>
                         </div>
                         <div>
                             <div className="divider">Or</div>
