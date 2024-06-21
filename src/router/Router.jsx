@@ -15,6 +15,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Dashboard from "../MainLayout/Dashboard";
 import MyProfile from "../DashboardPages/MyProfile";
 import MyApplication from '../DashboardPages/MyApplication'
+import MyReviews from "../DashboardPages/MyReviews";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         {
           path:'myApplication',
           element:<MyApplication></MyApplication>
+        },
+        {
+          path:'MyReviews',
+          element:<MyReviews></MyReviews>
         }
     ]
   }
