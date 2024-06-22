@@ -16,6 +16,7 @@ import Dashboard from "../MainLayout/Dashboard";
 import MyProfile from "../DashboardPages/MyProfile";
 import MyApplication from '../DashboardPages/MyApplication'
 import MyReviews from "../DashboardPages/MyReviews";
+import UpdateMyApplication from "../DashboardPages/UpdateMyApplication";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
         {
           path:'myApplication',
           element:<MyApplication></MyApplication>
+        },
+        {
+          path:'myApplication/update/:id',
+          element:<UpdateMyApplication></UpdateMyApplication>
         },
         {
           path:'MyReviews',

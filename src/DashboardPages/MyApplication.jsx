@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
+import { button } from "@material-tailwind/react";
+import Swal from "sweetalert2";
 
 const MyApplication = () => {
     const { user } = useAuth();
@@ -14,7 +17,14 @@ const MyApplication = () => {
         }
     })
 
-    console.log(myApplication);
+    const handleError=()=>{
+        Swal.fire({
+            icon: "warning",
+            title: `Your application is in processing stage`,
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
 
 
     return (
@@ -46,23 +56,25 @@ const MyApplication = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        myApplication.map((eachApplication,idx)=><tr key={eachApplication._id}>
-                                        <td>{idx+1}</td>
-                                        <td>{eachApplication?.universityname}</td>
-                                        <td>{eachApplication?.country}, {eachApplication?.district}</td>  
-                                        <td>-</td> 
-                                        <td>{eachApplication?.subjectcategory}</td>
-                                        <td>{eachApplication?.applicantdegree}</td>
-                                        <td>{eachApplication?.transactionId}</td>
-                                        <td>{eachApplication?.scholarshipId}</td>
-                                        <td>{eachApplication?.status}</td>
-                                        <td><button className="p-1 text-xs rounded-full bg-yellow-200 font-medium">Update</button></td>
-                                        <td><button className="p-1 text-xs rounded-full bg-red-700 text-white font-medium">Cancel</button></td>
-                                        <td><button className="p-1 text-xs rounded-full bg-yellow-200 font-medium">Details</button></td>
-                                        <td><button className="p-1 text-xs rounded-full bg-yellow-200 font-medium">Add Review</button></td>
+                                        myApplication.map((eachApplication, idx) => <tr key={eachApplication._id}>
+                                            <td>{idx + 1}</td>
+                                            <td>{eachApplication?.universityname}</td>
+                                            <td>{eachApplication?.country}, {eachApplication?.district}</td>
+                                            <td>-</td>
+                                            <td>{eachApplication?.subjectcategory}</td>
+                                            <td>{eachApplication?.applicantdegree}</td>
+                                            <td>{eachApplication?.transactionId}</td>
+                                            <td>{eachApplication?.scholarshipId}</td>
+                                            <td>{eachApplication?.status}</td>
+                                            {
+                                                eachApplication.status === 'processing' ? <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium" onClick={handleError}>Update</button></td> : <td><Link to={`/dashboard/myApplication/update/${eachApplication._id}`}><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium">Update</button></Link></td>
+                                            }
+                                            <td><button className="py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium">Cancel</button></td>
+                                            <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium">Details</button></td>
+                                            <td><button className="p-1 text-xs rounded-full bg-yellow-200 font-medium">Add Review</button></td>
 
-                                        
-                                    </tr>)
+
+                                        </tr>)
                                     }
                                 </tbody>
                             </table>
@@ -71,7 +83,6 @@ const MyApplication = () => {
                     :
                     <h1 className="text-[20px] md:text-[30px] mb-[17px] font-medium tracking-wider"><span className="border-b-[3px] border-yellow-300">No Data Available</span></h1>
             }
-
         </div>
     );
 };

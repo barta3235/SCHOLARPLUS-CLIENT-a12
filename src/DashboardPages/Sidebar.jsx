@@ -13,7 +13,7 @@ const Sidebar = () => {
     const [isModerator, isModeratorLoading] = useModerator();
 
     return (
-        <aside className="w-full p-2 md:p-4 dark:bg-gray-50 dark:text-gray-800 bg-yellow-200 min-h-screen">
+        <aside className="w-full p-2 md:p-4 dark:bg-gray-50 dark:text-gray-800 bg-yellow-200 min-h-screen h-full">
             <Link to='/' className="flex gap-2 items-center mb-5 justify-center">
                 <img className="w-[35px] h-[35px] rounded-lg mb-2" src={webLogo} alt="" />
                 <h1 className="text-[20px] font-semibold md:flex hidden gap-2 items-center justify-center tracking-wider">Scholar<span className="text-[24px] font-bold text-yellow-400"><FaPlus /></span></h1>
