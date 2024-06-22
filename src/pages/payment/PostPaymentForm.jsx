@@ -16,7 +16,7 @@ const PostPaymentForm = ({ scholarshipData,transId,payingAmount }) => {
     const [loading, setLoading] = useState(null);
     const navigate=useNavigate();
 
-    const { _id, universityname, scholarshipCategory, subjectcategory } = scholarshipData;
+    const { _id, universityname, scholarshipCategory, subjectcategory,scholarshipname } = scholarshipData;
 
     const handlePaymentFormSubmit = async (e) => {
         setLoading(true);
@@ -51,9 +51,10 @@ const PostPaymentForm = ({ scholarshipData,transId,payingAmount }) => {
         const transactionId=transId;
         const payment=payingAmount;
         const status= "pending";
+        const scholarship=scholarshipname;
 
         const appliedScholarshipData = {
-            applicantphone, applicantgender, applicantimage, applicantdegree, country, district, village, ssc, hsc, studygap, universityname, subjectcategory, scholarshipcategory, username, email, scholarshipId, currentdate,transactionId,payment,status
+            applicantphone, applicantgender, applicantimage, applicantdegree, country, district, village, ssc, hsc, studygap, universityname, subjectcategory, scholarshipcategory, username, email, scholarshipId, currentdate,transactionId,payment,status,scholarship
         }
         console.log(appliedScholarshipData)
 
