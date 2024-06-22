@@ -8,7 +8,7 @@ const Dashboard = () => {
                 <Sidebar></Sidebar> 
             </div>
 
-            <div>
+            <div className="overflow-x-auto">
                 <Outlet></Outlet>
             </div>
         </div>

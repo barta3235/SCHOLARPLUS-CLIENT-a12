@@ -1,7 +1,7 @@
 
 const MyReviews = () => {
     return (
-        <div>
+        <div className="mt-[40px]">
             <h1>My Reviews</h1>
         </div>
     );

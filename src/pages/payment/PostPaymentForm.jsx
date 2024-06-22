@@ -50,9 +50,10 @@ const PostPaymentForm = ({ scholarshipData,transId,payingAmount }) => {
         const currentdate = new Date();
         const transactionId=transId;
         const payment=payingAmount;
+        const status= "pending";
 
         const appliedScholarshipData = {
-            applicantphone, applicantgender, applicantimage, applicantdegree, country, district, village, ssc, hsc, studygap, universityname, subjectcategory, scholarshipcategory, username, email, scholarshipId, currentdate,transactionId,payment
+            applicantphone, applicantgender, applicantimage, applicantdegree, country, district, village, ssc, hsc, studygap, universityname, subjectcategory, scholarshipcategory, username, email, scholarshipId, currentdate,transactionId,payment,status
         }
         console.log(appliedScholarshipData)
 
