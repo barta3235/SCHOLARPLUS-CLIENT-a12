@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const MyApplication = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const { data: myApplication, refetch } = useQuery({
         queryKey: ['MyApplications'],
@@ -52,29 +52,54 @@ const MyApplication = () => {
         });
     }
 
-    const handleReview=async(e)=>{
+    const handleReview = async (id) => {
+        console.log(id);
+        const res2 = await axiosSecure.get(`/appliedScholarshipByUser/update/${id}`)
+
+        const scholarshipname = res2.data.scholarship;
+        const universityname = res2.data.universityname;
+        const scholarshipid = res2.data.scholarshipId;
+        const username = user?.displayName;
+        const useremail = user?.email;
+        console.log(username)
+        document.getElementById('un').value = universityname
+        document.getElementById('sn').value = scholarshipname
+        document.getElementById('si').value = scholarshipid
+        document.getElementById('n').value = username
+        document.getElementById('ue').value = useremail
+
+
+        document.getElementById('my_modal_1').showModal();
+    }
+
+    
+    const handleReview2 = async(e) => {
         e.preventDefault();
-        const rating=e.target.rating.value;
-        const date=e.target.date.value;
-        const scholarshipname=e.target.scholarshipname.value;
-        const universityname= e.target.universityname.value;
-        const username=e.target.username.value;
-        const useremail=e.target.useremail.value;
-        const comment=e.target.comment.value;
+        const rating = e.target.elements['rating-2'].value;
+        const date = e.target.date.value;
+        const comment = e.target.comment.value;
+        const scholarshipname = e.target.scholarshipname.value;
+        const universityname = e.target.universityname.value
+        const scholarshipid = e.target.scholarshipid.value
+        const username = e.target.username2.value;
+        const useremail = e.target.useremail2.value;
         
-        const newReview={rating,date,scholarshipname,universityname,username,useremail,comment}
-        
-        const data= await axiosSecure.post('/userReview',newReview)
-        if(data.data.insertedId){
+        const newReview={rating, date, comment, scholarshipid, scholarshipname, universityname, username, useremail}
+
+        const res4= await axiosSecure.post('/userReview',newReview)
+        if(res4?.data?.insertedId){
             Swal.fire({
                 icon: "success",
-                title: `Review Added. Thank you!`,
+                title: `Thanks for sharing your feedback!`,
                 showConfirmButton: false,
                 timer: 1500
             });
             navigate('/dashboard/myProfile');
         }
+
     }
+
+
 
 
 
@@ -123,7 +148,7 @@ const MyApplication = () => {
                                             }
                                             <td><button onClick={() => handleDelete(eachApplication?._id)} className="py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium">Cancel</button></td>
                                             <td><Link to={`/scholarshipDetails/${eachApplication.scholarshipId}`}><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium">Details</button></Link></td>
-                                            <td><button onClick={()=>document.getElementById('my_modal_1').showModal()} className="p-1 text-xs rounded-full bg-yellow-200 font-medium">Add Review</button></td>
+                                            <td><button onClick={() => handleReview(eachApplication?._id)} className="p-1 text-xs rounded-full bg-yellow-200 font-medium">Add Review</button></td>
 
 
                                         </tr>)
@@ -135,65 +160,31 @@ const MyApplication = () => {
                     :
                     <h1 className="text-[20px] md:text-[30px] mb-[17px] font-medium tracking-wider"><span className="border-b-[3px] border-yellow-300">No Data Available</span></h1>
             }
-
-            {/* review modal */}
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
-                    <p className="py-2 tracking-wider">Press fill the information below</p>
+                    <p className="py-2 tracking-wider">Press fill the necessary information.</p>
                     <div className="modal-action">
-                        <form onSubmit={handleReview} method="dialog" className="overflow-x-auto">
-                            <fieldset className="grid grid-cols-4 gap-6  rounded-md shadow-md dark:bg-gray-50">
-                                <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-
-                                    <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="img" className="font-medium" >Rating Point</label>
-                                        <input type="range" min={0} max="5" name="rating" className="range text-yellow-300" step="1"  />
-                                        <div className="w-full rounded-lg flex justify-between bg-yellow-200 text-xs px-2">
-                                            <span>1</span>
-                                            <span>2</span>
-                                            <span>3</span>
-                                            <span>4</span>
-                                            <span>5</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="img" className="font-semibold">Review Date</label>
-                                        <input id="img" name="date" type="date" placeholder="$ 00.0" className="w-full rounded-md border py-2 pl-1" required />
-                                    </div>
-                                    
-                                    <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="img" className="font-semibold">Scholarship Name</label>
-                                        <input id="img" name="scholarshipname" type="text" placeholder="Name of the scholarship" className="w-full rounded-md border py-2 pl-1" required />
-                                    </div>
-                                    
-                                    <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="img" className="font-semibold">University Name</label>
-                                        <input id="img" name="universityname" type="text" placeholder="Name of your university" className="w-full rounded-md border py-2 pl-1" required/>
-                                    </div>
-
-                                    <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="img" className="font-semibold">User Name</label>
-                                        <input id="img" name="username" defaultValue={user?.displayName} type="text" placeholder="Name of your university" className="w-full rounded-md border py-2 pl-1" required />
-                                    </div>
-
-                                    <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="img" className="font-semibold">User Email</label>
-                                        <input id="img" name="useremail" defaultValue={user?.email} type="text" placeholder="Name of your university" className="w-full rounded-md border py-2 pl-1" required />
-                                    </div>
-                                    
-                                    <div className="col-span-full">
-                                        <label htmlFor="img" className="font-semibold">Review Comment</label> <br />
-                                        <textarea id="comm" name="comment" placeholder="Share Your Experience" className="w-full rounded-md border py-2 pl-1 h-[120px]" required/>
-                                    </div>
+                        <form onSubmit={handleReview2} method="dialog" className="flex flex-col gap-5 w-full">
+                            <div>
+                                <h1 className="text-xs mb-2 ml-1 font-medium">Rate the Scholarship</h1>
+                                <div className="rating">
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="1" required />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="2" required/>
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="3" required/>
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="4" required/>
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="5" required/>
                                 </div>
-                            </fieldset>
-                            <div className="flex justify-end">
-                                <input className="py-2 mt-5 px-2 bg-yellow-200 rounded-lg font-medium tracking-wider cursor-pointer" type="submit" value="Submit & Close" />
                             </div>
+                            <input name="date" type="date" className="border px-2 py-1 rounded-lg" required />
+                            <input type="text" id="un" name="universityname" placeholder="University Name" className="border rounded-md py-1 px-2" required/>
+                            <input type="text" id="sn" name="scholarshipname" placeholder="Scholarship Name" className="border rounded-md py-1 px-2" required/>
+                            <input type="text" id="si" name="scholarshipid" placeholder="Scholarship Id" className="border rounded-md py-1 px-2" required/>
+                            <input type="text" id="n" name="username2" placeholder="User Name" className="border rounded-md py-1 px-2" required/>
+                            <input type="text" id="ue" name="useremail2" placeholder="User Email" className="border rounded-md py-1 px-2" required/>
+                            <textarea name="comment" className="textarea textarea-bordered" placeholder="Share our experience" required></textarea>
+                            <input type="submit" className="cursor-pointer border-b-2 rounded-md font-medium border-b-yellow-300 w-[120px]" value="Submit & Close" />
                         </form>
                     </div>
-
                 </div>
             </dialog>
         </div>
