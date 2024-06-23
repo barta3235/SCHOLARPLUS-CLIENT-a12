@@ -50,7 +50,7 @@ const router = createBrowserRouter([
          element:<UserPrivateRoute><PaymentInitial></PaymentInitial></UserPrivateRoute>
       },
       {
-        path: '/dashboard/addScholarship',
+        path: '/dashboard/moderator/addScholarships',
         element: <ModeratorRoute><AddScholarship></AddScholarship></ModeratorRoute>
       }
     ]
