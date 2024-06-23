@@ -19,7 +19,7 @@ const Top6_Scholarship = () => {
             {
                 allScholarship
                     ?
-                    <div className="mx-[5px] md:mx-[50px] mb-[100px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div className="mx-[5px] md:mx-[50px] mb-[40px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         {
                             allScholarship?.map((eachScholarship) => <EachCard_Top6 key={eachScholarship._id} eachScholarship={eachScholarship}></EachCard_Top6>)
                         }

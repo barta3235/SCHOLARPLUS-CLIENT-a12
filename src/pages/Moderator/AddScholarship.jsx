@@ -225,7 +225,7 @@ const AddScholarship = () => {
 
 
                         <div className="flex justify-end">
-                            <input type="submit" value="Add Scholarship" className="border py-2 rounded-lg font-medium bg-yellow-300 w-[150px] cursor-pointer" />
+                            <input type="submit" value="Add Scholarship" className="border py-2 mb-[50px] rounded-lg font-medium bg-yellow-300 w-[150px] cursor-pointer" />
                         </div>
                     </form>
                 </div>

@@ -35,7 +35,7 @@ const MyProfile = () => {
                 <h1 className="flex flex-col md:flex-row md:items-center gap-2 md:text-[20px] font-medium link-hover"><AiTwotoneMail className="text-2xl" /><span>{user?.email}</span></h1>
             </div>
             {
-                userFromDb.role === 'moderator'
+                userFromDb?.role === 'moderator'
                     ?
                     <div className="mt-[20px]">
                         <h1 className="flex flex-col md:flex-row md:items-center gap-2 md:text-[20px] font-medium link-hover"><GrUserAdmin className="text-2xl" />Role:<span>Moderator</span></h1>
