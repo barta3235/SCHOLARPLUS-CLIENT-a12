@@ -42,7 +42,7 @@ const Sidebar = () => {
                 ?
                 <nav className="space-y-8">
                         <div className="space-y-2 flex flex-col justify-center md:justify-normal items-center">
-                            <h2 className="text-[20px] font-semibold tracking-widest uppercase dark:text-gray-600 mb-[20px] flex gap-2 items-center"><MdDashboard className="text-[22px]" /><span className="hidden md:flex">Dashboard</span></h2>
+                            <h2 className="text-[20px] font-semibold tracking-widest uppercase dark:text-gray-600 mb-[20px] gap-2 items-center hidden md:flex"><MdDashboard className="text-[22px]" /><span>Dashboard</span></h2>
                             <div className="flex flex-col text-[18px] space-y-5 tracking-wider justify-center md:justify-end">
                                 <Link to='/dashboard/myProfile' className="flex gap-2 items-center"><CgProfile className="text-[21px]" /><h1 className="hidden md:flex">My Profile</h1></Link>
                                 <Link to='/dashboard/moderator/manageScholarships' className="flex gap-2 items-center"><MdRotate90DegreesCcw className="text-[21px]" /><h1 className="hidden md:flex">Manage Scholarships</h1></Link>
