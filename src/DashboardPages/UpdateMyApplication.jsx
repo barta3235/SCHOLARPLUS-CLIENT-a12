@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 
@@ -24,8 +23,6 @@ const UpdateMyApplication = () => {
             return res3.data;
         }
     })
-
-    console.log(eachApplication);
 
     const handleUpdate=async(e)=>{
         e.preventDefault();
@@ -51,7 +48,7 @@ const UpdateMyApplication = () => {
 
         const updatedInfo={ applicantphone, applicantgender, applicantimage, applicantdegree, country, district, village, ssc, hsc, studygap};
 
-        console.log(updatedInfo);
+        console.log('in update file',updatedInfo);
 
         const res2=await axiosSecure.put(`/appliedScholarshipByUser/update/${eachApplication?._id}`,updatedInfo)
         
