@@ -19,6 +19,7 @@ import MyReviews from "../DashboardPages/MyReviews";
 import UpdateMyApplication from "../DashboardPages/UpdateMyApplication";
 import ManageScholarship from "../pages/Moderator/ManageScholarship";
 import ManageReview from "../pages/Moderator/ManageReview";
+import AppliedScholarships from "../pages/Moderator/AppliedScholarships";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
         {
           path:'moderator/reviews',
           element:<ManageReview></ManageReview>
+        },
+        {
+          path:'moderator/appliedScholarships',
+          element:<AppliedScholarships></AppliedScholarships>
         }
     ]
   }
