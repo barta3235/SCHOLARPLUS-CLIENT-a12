@@ -144,11 +144,11 @@ const MyApplication = () => {
                                             <td>{eachApplication?.scholarshipId}</td>
                                             <td>{eachApplication?.status}</td>
                                             {
-                                                eachApplication.status === 'processing' ? <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium" onClick={handleError}>Update</button></td> : <td><Link to={`/dashboard/myApplication/update/${eachApplication._id}`}><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium">Update</button></Link></td>
+                                                eachApplication.status === 'processing' ? <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium" onClick={handleError}>Update</button></td> : <td><Link to={`/dashboard/myApplication/update/${eachApplication._id}`}><button disabled={eachApplication?.status==='rejected'} className={eachApplication?.status==='rejected' ? 'py-1 px-2 text-xs rounded-full bg-slate-300 ' : 'py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium'}>Update</button></Link></td>
                                             }
-                                            <td><button onClick={() => handleDelete(eachApplication?._id)} className="py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium">Cancel</button></td>
+                                            <td><button disabled={eachApplication?.status==='rejected'} onClick={() => handleDelete(eachApplication?._id)} className={eachApplication?.status==='rejected' ? 'py-1 px-2 text-xs rounded-full bg-slate-300 text-white' : 'py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium'}>Cancel</button></td>
                                             <td><Link to={`/scholarshipDetails/${eachApplication.scholarshipId}`}><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium">Details</button></Link></td>
-                                            <td><button onClick={() => handleReview(eachApplication?._id)} className="p-1 text-xs rounded-full bg-yellow-200 font-medium">Add Review</button></td>
+                                            <td><button disabled={eachApplication?.status==='rejected'} onClick={() => handleReview(eachApplication?._id)} className={eachApplication?.status==='rejected' ? 'p-1 text-xs rounded-full bg-slate-300' : 'p-1 text-xs rounded-full bg-yellow-200 font-medium'}>Add Review</button></td>
 
 
                                         </tr>)

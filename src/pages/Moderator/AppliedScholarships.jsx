@@ -3,12 +3,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import { MdDelete, MdOutlineFeedback } from "react-icons/md";
 import { BiMessageSquareDetail } from "react-icons/bi";
-import { GrUpdate } from "react-icons/gr";
+import Swal from "sweetalert2";
+
 
 const AppliedScholarships = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: allAppliedScholarships } = useQuery({
+    const { data: allAppliedScholarships, refetch } = useQuery({
         queryKey: ['allAppliedScholarships'],
         queryFn: async () => {
             const res = await axiosSecure.get('/user/moderator/allAppliedScholarships')
@@ -18,12 +19,36 @@ const AppliedScholarships = () => {
 
 
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         console.log(id);
+        const updatedStatus = {
+            status: "rejected"
+        }
+        const res70 = await axiosSecure.put(`/user/moderator/updateStatusAfterDelete/${id}`, updatedStatus)
+        if (res70.data.modifiedCount > 0) {
+            Swal.fire({
+                icon: "success",
+                title: `Scholarship is Rejected`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        refetch();
     }
 
-    const handleDetails = (id) => {
+    const handleDetails = async (id) => {
         console.log(id);
+
+        const res3 = await axiosSecure.get(`/user/moderator/eachAppliedScholarships/${id}`)
+
+        document.getElementById('universityname').innerText = res3.data.universityname
+        document.getElementById('degree').innerText = res3.data.applicantdegree
+        document.getElementById('scholarshipcategory').innerText = res3.data.scholarshipcategory
+        document.getElementById('scholarshipid').innerText = res3.data.scholarshipId
+        document.getElementById('transactionid').innerText = res3.data.transactionId
+        document.getElementById('payment').innerText = parseInt(res3.data.payment) / 100
+        document.getElementById('status').innerText = res3.data.status
+
         document.getElementById('my_modal_1').showModal()
     }
 
@@ -83,20 +108,26 @@ const AppliedScholarships = () => {
                                             <td>{eachScholarshipData?.universityimage}</td> */}
 
 
-                                            <td>
-                                                <select defaultValue={eachScholarshipData?.status} className="border rounded-md" name="applicationstatus" id="lang">
-                                                    <option value="pending">Pending</option>
-                                                    <option value="processing">Processing</option>
-                                                    <option value="completed">Completed</option>
-                                                </select>
-                                            </td>
+                                            {
+                                                eachScholarshipData?.status==='rejected'
+                                                    ?
+                                                    <td className="bg-red-600 text-white font-medium">Rejected</td>
+                                                    :
+                                                    <td>
+                                                        <select defaultValue={eachScholarshipData?.status} className="border rounded-md" name="applicationstatus" id="lang">
+                                                            <option value="pending">Pending</option>
+                                                            <option value="processing">Processing</option>
+                                                            <option value="completed">Completed</option>
+                                                        </select>
+                                                    </td>
+                                            }
 
 
 
 
                                             <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium"><MdOutlineFeedback className="text-[20px]" /></button></td>
-                                            <td><button onClick={() => handleDelete(eachScholarshipData?._id)} className="py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium"><MdDelete className="text-[18px]" /></button></td>
-                                            <td><button onClick={() => handleDetails(eachScholarshipData?._id)} className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium"><BiMessageSquareDetail className="text-[20px]" /></button></td>
+                                            <td><button disabled={eachScholarshipData?.status==='rejected'} onClick={() => handleDelete(eachScholarshipData?._id)} className={eachScholarshipData?.status==='rejected' ? `py-1 px-2 text-xs rounded-full bg-slate-500 text-white font-medium` : `py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium`}><MdDelete className="text-[18px]" /></button></td>
+                                            <td><button disabled={eachScholarshipData?.status==='rejected'} onClick={() => handleDetails(eachScholarshipData?._id)} className={eachScholarshipData?.status==='rejected' ? `py-1 px-2 text-xs rounded-full bg-slate-500 font-medium ` :`py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium ` }><BiMessageSquareDetail className="text-[20px]" /></button></td>
 
 
                                         </tr>)
@@ -110,36 +141,41 @@ const AppliedScholarships = () => {
             }
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box tracking-wider">
-                    <p className="py-2 mb-5 text-[20px]">Applied <span className="border-b-2 border-b-yellow-300">Scholarships</span></p>
+                    <p className="py-2 mb-5 font-medium text-[20px]">Applied <span className="border-b-[3px] border-b-yellow-300">Scholarships</span></p>
 
                     <div className="flex items-center gap-2 mb-2">
                         <h1 className="font-medium">University Name:</h1>
-                        <h1 className="mt-1 rounded-md" type="text">xsdsdx</h1>
+                        <h1 id="universityname" className="mt-1 rounded-md text-[18px]" type="text"></h1>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
                         <h1 className="font-medium">Applied Degree:</h1>
-                        <h1 className="mt-1 rounded-md" type="text">xsdsdx</h1>
+                        <h1 id="degree" className="mt-1 rounded-md text-[18px]" type="text"></h1>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
                         <h1 className="font-medium">Scholarship Category:</h1>
-                        <h1 className="mt-1 rounded-md" type="text">xsdsdx</h1>
+                        <h1 id="scholarshipcategory" className="mt-1 rounded-md text-[18px]" type="text"></h1>
+                    </div>
+
+                    <div className="flex items-center gap-2 mb-2">
+                        <h1 className="font-medium">Scholarship Id:</h1>
+                        <h1 id="scholarshipid" className="mt-1 rounded-md text-[18px]" type="text"></h1>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
                         <h1 className="font-medium">Transaction Id:</h1>
-                        <h1 className="mt-1 rounded-md" type="text">xsdsdx</h1>
+                        <h1 id="transactionid" className="mt-1 text-[18px] bg-red-600 rounded-xl p-1 text-white" type="text"></h1>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
                         <h1 className="font-medium">Paid Amount:</h1>
-                        <h1 className="mt-1 rounded-md" type="text">xsdsdx</h1>
+                        <h1 id="payment" className="mt-1 rounded-md text-[18px]" type="text"></h1>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
                         <h1 className="font-medium">Status:</h1>
-                        <h1 className="mt-1 rounded-md" type="text">xsdsdx</h1>
+                        <h1 id="status" className="mt-1 rounded-xl text-[18px] bg-green-500 p-1 text-white" type="text"></h1>
                     </div>
 
 
