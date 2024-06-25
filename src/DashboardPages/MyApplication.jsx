@@ -72,8 +72,8 @@ const MyApplication = () => {
         document.getElementById('my_modal_1').showModal();
     }
 
-    
-    const handleReview2 = async(e) => {
+
+    const handleReview2 = async (e) => {
         e.preventDefault();
         const rating = e.target.elements['rating-2'].value;
         const date = e.target.date.value;
@@ -83,11 +83,11 @@ const MyApplication = () => {
         const scholarshipid = e.target.scholarshipid.value
         const username = e.target.username2.value;
         const useremail = e.target.useremail2.value;
-        
-        const newReview={rating, date, comment, scholarshipid, scholarshipname, universityname, username, useremail}
 
-        const res4= await axiosSecure.post('/userReview',newReview)
-        if(res4?.data?.insertedId){
+        const newReview = { rating, date, comment, scholarshipid, scholarshipname, universityname, username, useremail }
+
+        const res4 = await axiosSecure.post('/userReview', newReview)
+        if (res4?.data?.insertedId) {
             Swal.fire({
                 icon: "success",
                 title: `Thanks for sharing your feedback!`,
@@ -137,20 +137,18 @@ const MyApplication = () => {
                                             <td>{idx + 1}</td>
                                             <td>{eachApplication?.universityname}</td>
                                             <td>{eachApplication?.country}, {eachApplication?.district}</td>
-                                            <td>-</td>
+                                            <td className="text-xs">{eachApplication?.feedback ? eachApplication?.feedback : '-'}</td>
                                             <td>{eachApplication?.subjectcategory}</td>
                                             <td>{eachApplication?.applicantdegree}</td>
                                             <td>{eachApplication?.transactionId}</td>
                                             <td>{eachApplication?.scholarshipId}</td>
                                             <td>{eachApplication?.status}</td>
                                             {
-                                                eachApplication.status === 'processing' ? <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium" onClick={handleError}>Update</button></td> : <td><Link to={`/dashboard/myApplication/update/${eachApplication._id}`}><button disabled={eachApplication?.status==='rejected'} className={eachApplication?.status==='rejected' ? 'py-1 px-2 text-xs rounded-full bg-slate-300 ' : 'py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium'}>Update</button></Link></td>
+                                                eachApplication.status === 'processing' ? <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium" onClick={handleError}>Update</button></td> : <td><Link to={`/dashboard/myApplication/update/${eachApplication._id}`}><button disabled={eachApplication?.status === 'rejected'} className={eachApplication?.status === 'rejected' ? 'py-1 px-2 text-xs rounded-full bg-slate-300 ' : 'py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium'}>Update</button></Link></td>
                                             }
-                                            <td><button disabled={eachApplication?.status==='rejected'} onClick={() => handleDelete(eachApplication?._id)} className={eachApplication?.status==='rejected' ? 'py-1 px-2 text-xs rounded-full bg-slate-300 text-white' : 'py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium'}>Cancel</button></td>
+                                            <td><button disabled={eachApplication?.status === 'rejected'} onClick={() => handleDelete(eachApplication?._id)} className={eachApplication?.status === 'rejected' ? 'py-1 px-2 text-xs rounded-full bg-slate-300 text-white' : 'py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium'}>Cancel</button></td>
                                             <td><Link to={`/scholarshipDetails/${eachApplication.scholarshipId}`}><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium">Details</button></Link></td>
-                                            <td><button disabled={eachApplication?.status==='rejected'} onClick={() => handleReview(eachApplication?._id)} className={eachApplication?.status==='rejected' ? 'p-1 text-xs rounded-full bg-slate-300' : 'p-1 text-xs rounded-full bg-yellow-200 font-medium'}>Add Review</button></td>
-
-
+                                            <td><button disabled={eachApplication?.status === 'rejected'} onClick={() => handleReview(eachApplication?._id)} className={eachApplication?.status === 'rejected' ? 'p-1 text-xs rounded-full bg-slate-300' : 'p-1 text-xs rounded-full bg-yellow-200 font-medium'}>Add Review</button></td>
                                         </tr>)
                                     }
                                 </tbody>
@@ -169,18 +167,18 @@ const MyApplication = () => {
                                 <h1 className="text-xs mb-2 ml-1 font-medium">Rate the Scholarship</h1>
                                 <div className="rating">
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="1" required />
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="2" required/>
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="3" required/>
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="4" required/>
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="5" required/>
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="2" required />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="3" required />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="4" required />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-yellow-400" value="5" required />
                                 </div>
                             </div>
                             <input name="date" type="date" className="border px-2 py-1 rounded-lg" required />
-                            <input type="text" id="un" name="universityname" placeholder="University Name" className="border rounded-md py-1 px-2" required/>
-                            <input type="text" id="sn" name="scholarshipname" placeholder="Scholarship Name" className="border rounded-md py-1 px-2" required/>
-                            <input type="text" id="si" name="scholarshipid" placeholder="Scholarship Id" className="border rounded-md py-1 px-2" required/>
-                            <input type="text" id="n" name="username2" placeholder="User Name" className="border rounded-md py-1 px-2" required/>
-                            <input type="text" id="ue" name="useremail2" placeholder="User Email" className="border rounded-md py-1 px-2" required/>
+                            <input type="text" id="un" name="universityname" placeholder="University Name" className="border rounded-md py-1 px-2" required />
+                            <input type="text" id="sn" name="scholarshipname" placeholder="Scholarship Name" className="border rounded-md py-1 px-2" required />
+                            <input type="text" id="si" name="scholarshipid" placeholder="Scholarship Id" className="border rounded-md py-1 px-2" required />
+                            <input type="text" id="n" name="username2" placeholder="User Name" className="border rounded-md py-1 px-2" required />
+                            <input type="text" id="ue" name="useremail2" placeholder="User Email" className="border rounded-md py-1 px-2" required />
                             <textarea name="comment" className="textarea textarea-bordered" placeholder="Share our experience" required></textarea>
                             <input type="submit" className="cursor-pointer border-b-2 rounded-md font-medium border-b-yellow-300 w-[120px]" value="Submit & Close" />
                         </form>

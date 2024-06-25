@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDelete, MdOutlineFeedback } from "react-icons/md";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import Swal from "sweetalert2";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 
 const AppliedScholarships = () => {
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const { data: allAppliedScholarships, refetch } = useQuery({
         queryKey: ['allAppliedScholarships'],
@@ -36,6 +37,15 @@ const AppliedScholarships = () => {
         refetch();
     }
 
+    const handleFeedback = (id) => {
+        console.log(id);
+
+        document.getElementById('idbox').value = id;
+        document.getElementById('my_modal_2').showModal();
+
+
+    }
+
     const handleDetails = async (id) => {
         console.log(id);
 
@@ -50,6 +60,28 @@ const AppliedScholarships = () => {
         document.getElementById('status').innerText = res3.data.status
 
         document.getElementById('my_modal_1').showModal()
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const id = e.target.id.value;
+        const feedback = e.target.textBox.value
+        const sendData = {
+            moderatorFeedback: feedback,
+        }
+        
+        const res72 = await axiosSecure.put(`/user/moderator/addFeedBack/${id}`, sendData)
+        if (res72.data.modifiedCount > 0) {
+            Swal.fire({
+                icon: "success",
+                title: `Feed back provided!`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            refetch();
+            navigate('/dashboard/myProfile');
+
+        }
     }
 
     return (
@@ -109,7 +141,7 @@ const AppliedScholarships = () => {
 
 
                                             {
-                                                eachScholarshipData?.status==='rejected'
+                                                eachScholarshipData?.status === 'rejected'
                                                     ?
                                                     <td className="bg-red-600 text-white font-medium">Rejected</td>
                                                     :
@@ -125,9 +157,9 @@ const AppliedScholarships = () => {
 
 
 
-                                            <td><button className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium"><MdOutlineFeedback className="text-[20px]" /></button></td>
-                                            <td><button disabled={eachScholarshipData?.status==='rejected'} onClick={() => handleDelete(eachScholarshipData?._id)} className={eachScholarshipData?.status==='rejected' ? `py-1 px-2 text-xs rounded-full bg-slate-500 text-white font-medium` : `py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium`}><MdDelete className="text-[18px]" /></button></td>
-                                            <td><button disabled={eachScholarshipData?.status==='rejected'} onClick={() => handleDetails(eachScholarshipData?._id)} className={eachScholarshipData?.status==='rejected' ? `py-1 px-2 text-xs rounded-full bg-slate-500 font-medium ` :`py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium ` }><BiMessageSquareDetail className="text-[20px]" /></button></td>
+                                            <td><button onClick={() => handleFeedback(eachScholarshipData?._id)} className="py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium"><MdOutlineFeedback className="text-[20px]" /></button></td>
+                                            <td><button disabled={eachScholarshipData?.status === 'rejected'} onClick={() => handleDelete(eachScholarshipData?._id)} className={eachScholarshipData?.status === 'rejected' ? `py-1 px-2 text-xs rounded-full bg-slate-500 text-white font-medium` : `py-1 px-2 text-xs rounded-full bg-red-700 text-white font-medium`}><MdDelete className="text-[18px]" /></button></td>
+                                            <td><button disabled={eachScholarshipData?.status === 'rejected'} onClick={() => handleDetails(eachScholarshipData?._id)} className={eachScholarshipData?.status === 'rejected' ? `py-1 px-2 text-xs rounded-full bg-slate-500 font-medium ` : `py-1 px-2 text-xs rounded-full bg-yellow-200 font-medium `}><BiMessageSquareDetail className="text-[20px]" /></button></td>
 
 
                                         </tr>)
@@ -184,6 +216,20 @@ const AppliedScholarships = () => {
                         <form method="dialog" className="flex flex-col">
                             {/* if there is a button in form, it will close the modal */}
                             <button className="btn bg-yellow-200 hover:bg-yellow-300 border-0">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog id="my_modal_2" className="modal">
+                <div className="modal-box flex flex-col">
+                    <p className="py-2 mb-2">Provide Feedback</p>
+                    <div className="modal-action">
+                        <form onSubmit={handleSubmit} method="dialog" className="border rounded-lg w-full">
+                            <input name="id" id="idbox" className="border py-1 rounded-md" hidden type="text" />
+                            <textarea name="textBox" className="textarea w-full mt-2 outline-none border-0" placeholder="Share your feedback"></textarea>
+                            {/* if there is a button in form, it will close the modal */}
+                            <input type="submit" className="bg-yellow-200 py-1 px-1 font-medium rounded-tr-lg cursor-pointer" value="Submit & Close" name="" id="" />
                         </form>
                     </div>
                 </div>
