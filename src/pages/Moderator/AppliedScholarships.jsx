@@ -69,7 +69,7 @@ const AppliedScholarships = () => {
         const sendData = {
             moderatorFeedback: feedback,
         }
-        
+
         const res72 = await axiosSecure.put(`/user/moderator/addFeedBack/${id}`, sendData)
         if (res72.data.modifiedCount > 0) {
             Swal.fire({
@@ -80,9 +80,33 @@ const AppliedScholarships = () => {
             });
             refetch();
             navigate('/dashboard/myProfile');
-
         }
     }
+    
+    const handlePPC=async(e,id)=>{
+        console.log(id)
+        const ppc=e.target.value;
+
+        const status={
+            statusChange:ppc
+        }
+
+        const res33= await axiosSecure.put(`/user/moderator/updateStatus/${id}`,status)
+        if (res33.data.modifiedCount > 0) {
+            Swal.fire({
+                icon: "success",
+                title: `Feed back provided!`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            refetch();
+            navigate('/dashboard/myProfile');
+        }
+
+
+    }
+
+
 
     return (
         <div className="mt-[40px]">
@@ -146,11 +170,14 @@ const AppliedScholarships = () => {
                                                     <td className="bg-red-600 text-white font-medium">Rejected</td>
                                                     :
                                                     <td>
-                                                        <select defaultValue={eachScholarshipData?.status} className="border rounded-md" name="applicationstatus" id="lang">
-                                                            <option value="pending">Pending</option>
-                                                            <option value="processing">Processing</option>
-                                                            <option value="completed">Completed</option>
-                                                        </select>
+                                                        <form>
+                                                            <select onChange={(e)=>handlePPC(e,eachScholarshipData?._id)} defaultValue={eachScholarshipData?.status} className="border rounded-md" name="applicationstatus" id="ppc">
+                                                                <option value="pending">Pending</option>
+                                                                <option value="processing">Processing</option>
+                                                                <option value="completed">Completed</option>
+                                                            </select>
+                                                        </form>
+
                                                     </td>
                                             }
 
