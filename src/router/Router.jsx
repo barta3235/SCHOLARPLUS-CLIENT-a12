@@ -20,6 +20,7 @@ import UpdateMyApplication from "../DashboardPages/UpdateMyApplication";
 import ManageScholarship from "../pages/Moderator/ManageScholarship";
 import ManageReview from "../pages/Moderator/ManageReview";
 import AppliedScholarships from "../pages/Moderator/AppliedScholarships";
+import ContactUs from "../pages/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/moderator/addScholarships',
         element: <ModeratorRoute><AddScholarship></AddScholarship></ModeratorRoute>
+      },
+      {
+        path:'/contactUs',
+        element:<ContactUs></ContactUs>
       }
     ]
   },

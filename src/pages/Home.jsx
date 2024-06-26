@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import HeadSubHead from "../components/HeadSubHead";
 import Top6_Scholarship from '../components/Top6_Scholarship/Top6_Scholarship'
 import ReviewHomePage from "../components/ReviewHomePage";
+import ReachUs from "../components/ReachUs";
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
                 <Link className="w-[120px] text-center text-[18px]" to='/allScholarships'><h1 className="border-b-yellow-300 border-b-4 pb-2 tracking-wider font-medium">Explore more</h1></Link>
             </div>
             <ReviewHomePage></ReviewHomePage>
+            <ReachUs></ReachUs>
         </div>
     );
 };

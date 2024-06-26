@@ -23,7 +23,7 @@ const Footer = () => {
                                 <Link to='/allScholarships'>Scholarships</Link>
                             </li>
                             <li>
-                                <Link>Contact Us</Link>
+                                <Link to='/contactUs'>Contact Us</Link>
                             </li>
                         </ul>
                     </div>
