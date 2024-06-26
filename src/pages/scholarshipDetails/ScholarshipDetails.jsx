@@ -2,6 +2,7 @@ import { count } from "firebase/firestore";
 import { IoLocationOutline } from "react-icons/io5";
 import { LiaUniversitySolid } from "react-icons/lia";
 import { Link, useLoaderData } from "react-router-dom";
+import ScholarshipReview from "../../components/ScholarshipReview";
 
 const ScholarshipDetails = () => {
 
@@ -64,8 +65,8 @@ const ScholarshipDetails = () => {
                     <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars text-yellow-300 w-24"></span></div>
             }
 
-            <div>
-                <h1>Review Section</h1>
+            <div className="mx-5 md:mx-[100px] mt-[20px] mb-[100px]">
+                <ScholarshipReview id={_id}></ScholarshipReview>
             </div>
         </section>
 
