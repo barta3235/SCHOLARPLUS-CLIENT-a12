@@ -6,12 +6,16 @@ import { MdDashboard, MdLibraryAdd, MdOutlineRateReview, MdRotate90DegreesCcw } 
 import { PiNewspaper } from "react-icons/pi";
 import useAuth from "../hooks/useAuth";
 import useModerator from "../hooks/useModerator";
-import { IoLibraryOutline } from "react-icons/io5";
+import { IoLibraryOutline, IoPerson, IoPersonAdd } from "react-icons/io5";
+import useAdmin from "../hooks/useAdmin";
 
 const Sidebar = () => {
 
     const { user } = useAuth();
     const [isModerator, isModeratorLoading] = useModerator();
+    const [isAdmin, isAdminLoading] = useAdmin();
+
+    console.log(isAdmin);
 
     return (
         <aside className="w-full p-2 md:p-4 dark:bg-gray-50 dark:text-gray-800 bg-yellow-200 min-h-screen h-full">
@@ -21,7 +25,7 @@ const Sidebar = () => {
             </Link>
 
             {
-                user && !isModerator 
+                user && !isModerator && !isAdmin
                     ?
                     <nav className="space-y-8">
                         <div className="space-y-2 flex flex-col justify-center md:justify-normal items-center">
@@ -38,9 +42,9 @@ const Sidebar = () => {
             }
 
             {
-                user && isModerator
-                ?
-                <nav className="space-y-8">
+                user && isModerator && !isAdmin
+                    ?
+                    <nav className="space-y-8">
                         <div className="space-y-2 flex flex-col justify-center md:justify-normal items-center">
                             <h2 className="text-[20px] font-semibold tracking-widest uppercase dark:text-gray-600 mb-[20px] gap-2 items-center hidden md:flex"><MdDashboard className="text-[22px]" /><span>Dashboard</span></h2>
                             <div className="flex flex-col text-[18px] space-y-5 tracking-wider justify-center md:justify-end">
@@ -55,10 +59,32 @@ const Sidebar = () => {
                     </nav>
                     :
                     ''
-                
+
             }
 
-            
+            {
+                user && isAdmin && !isModerator
+                    ?
+                    <nav className="space-y-8">
+                        <div className="space-y-2 flex flex-col justify-center md:justify-normal items-center">
+                            <h2 className="text-[20px] font-semibold tracking-widest uppercase dark:text-gray-600 mb-[20px] gap-2 items-center hidden md:flex"><MdDashboard className="text-[22px]" /><span>Dashboard</span></h2>
+                            <div className="flex flex-col text-[18px] space-y-5 tracking-wider justify-center md:justify-end">
+                                <Link to='/dashboard/myProfile' className="flex gap-2 items-center"><CgProfile className="text-[21px]" /><h1 className="hidden md:flex">My Profile</h1></Link>
+                                <Link to='/dashboard/admin/addScholarships' className="flex gap-2 items-center"><MdRotate90DegreesCcw className="text-[21px]" /><h1 className="hidden md:flex">Add Scholarships</h1></Link>
+                                <Link to='/dashboard/admin/manageScholarships' className="flex gap-2 items-center"><MdRotate90DegreesCcw className="text-[21px]" /><h1 className="hidden md:flex">Manage Scholarships</h1></Link>
+                                <Link to='/dashboard/admin/appliedScholarships' className="flex gap-2 items-center"><IoLibraryOutline className="text-[21px]" /><h1 className="hidden md:flex">Applied Scholarships</h1></Link>
+                                <Link to='/dashboard/admin/reviews' className="flex gap-2 items-center"><MdOutlineRateReview className="text-[21px]" /><h1 className="hidden md:flex">Reviews</h1></Link>
+                                <Link to='/dashboard/admin/manageUsers' className="flex gap-2 items-center"><IoPerson className="text-[21px]" /><h1 className="hidden md:flex">Manage Users</h1></Link>
+
+                            </div>
+                        </div>
+                    </nav>
+                    :
+                    ''
+
+            }
+
+
         </aside>
     );
 };

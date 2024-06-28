@@ -43,6 +43,15 @@ const MyProfile = () => {
                     :
                     ''
             }
+            {
+                userFromDb?.role === 'admin'
+                    ?
+                    <div className="mt-[20px]">
+                        <h1 className="flex flex-col md:flex-row md:items-center gap-2 md:text-[20px] font-medium link-hover"><GrUserAdmin className="text-2xl" />Role:<span>Admin</span></h1>
+                    </div>
+                    :
+                    ''
+            }
         </div>
     );
 };

@@ -21,6 +21,12 @@ import ManageScholarship from "../pages/Moderator/ManageScholarship";
 import ManageReview from "../pages/Moderator/ManageReview";
 import AppliedScholarships from "../pages/Moderator/AppliedScholarships";
 import ContactUs from "../pages/ContactUs";
+import AdminRoute from "./AdminRoute";
+import AddScholarshipAdmin from "../pages/Admin/AddScholarshipAdmin";
+import ManageScholarshipAdmin from "../pages/Admin/ManageScholarshipAdmin";
+import AppliedScholarshipsAdmin from "../pages/Admin/AppliedScholarshipsAdmin";
+import ReviewsAdmin from "../pages/Admin/ReviewsAdmin";
+import ManageUsersAdmin from "../pages/Admin/ManageUsersAdmin";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +101,36 @@ const router = createBrowserRouter([
           path:'moderator/appliedScholarships',
           element:<AppliedScholarships></AppliedScholarships>
         }
+    ]
+  },
+  {
+    path:'/dashboard/admin',
+    element: <AdminRoute><Dashboard></Dashboard></AdminRoute>,
+    children:[
+      {
+        path:'myProfile',
+        element:<MyProfile></MyProfile>
+      },
+      {
+        path:'addScholarships',
+        element:<AddScholarshipAdmin></AddScholarshipAdmin>
+      },
+      {
+        path:'manageScholarships',
+        element:<ManageScholarshipAdmin></ManageScholarshipAdmin>
+      },
+      {
+        path:'appliedScholarships',
+        element:<AppliedScholarshipsAdmin></AppliedScholarshipsAdmin>
+      },
+      {
+        path:'reviews',
+        element:<ReviewsAdmin></ReviewsAdmin>
+      },
+      {
+        path:'manageUsers',
+        element:<ManageUsersAdmin></ManageUsersAdmin>
+      },
     ]
   }
 ]);
