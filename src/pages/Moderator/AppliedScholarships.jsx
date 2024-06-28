@@ -42,8 +42,6 @@ const AppliedScholarships = () => {
 
         document.getElementById('idbox').value = id;
         document.getElementById('my_modal_2').showModal();
-
-
     }
 
     const handleDetails = async (id) => {
@@ -102,8 +100,6 @@ const AppliedScholarships = () => {
             refetch();
             navigate('/dashboard/myProfile');
         }
-
-
     }
 
 
