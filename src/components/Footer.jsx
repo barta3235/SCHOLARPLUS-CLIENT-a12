@@ -2,15 +2,22 @@ import { BsLinkedin } from "react-icons/bs";
 import { FaPlus, FaSquareFacebook } from "react-icons/fa6";
 import webLogo from '../../src/assets/Website Logo/pngtree-toga-cap-logo-design-scholarship-brand-vector-png-image_12528833.png'
 import { Link } from "react-router-dom";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 const Footer = () => {
+    useEffect(() => {
+        AOS.init({ duration: 2000 })
+    }, [])
+
     return (
         <footer className="pt-6 border-t-4 border-yellow-300">
             <div className="container px-6 mx-auto space-y-6 dark:divide-gray-600 divide-y divide-opacity-50">
                 <div className="grid grid-cols-12 items-center">
                     <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
                         <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-1 md:justify-start items-center">
-                            <img className="w-[40px] h-[40px] rounded-lg" src={webLogo} alt="" />
+                            <img data-aos="fade-right" className="w-[40px] h-[40px] rounded-lg" src={webLogo} alt="" />
                             <h1 className="flex items-center gap-2"><h1 data-aos="fade-right"></h1><span data-aos="fade-down" className="self-center text-[25px]  font-medium tracking-wide "><span>Scholar</span></span><FaPlus className="text-[30px] text-yellow-300"></FaPlus></h1>
                         </a>
                     </div>

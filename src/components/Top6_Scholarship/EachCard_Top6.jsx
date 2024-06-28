@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { LiaUniversitySolid } from "react-icons/lia";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const EachCard_Top6 = ({ eachScholarship }) => {
     const [click, setClick] = useState(false);
 
     const { _id,subjectcategory, scholarshipname, scholarshipCategory, applicationfee, universityname, universityimage, country, city, applicationdeadline,degree } = eachScholarship
 
+    useEffect(()=>{
+        AOS.init({duration:1500})
+    },[])
+
     return (
-        <div>
+        <div data-aos="flip-right">
             <div className={`${click ? 'hidden' : 'flex flex-col'} border p-5 rounded-md shadow-md`}>
                 <img src={universityimage} alt="" className="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500" />
                 <div className="mt-6 mb-2">

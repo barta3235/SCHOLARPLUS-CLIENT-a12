@@ -6,8 +6,9 @@ import { MdDashboard, MdLibraryAdd, MdOutlineRateReview, MdRotate90DegreesCcw } 
 import { PiNewspaper } from "react-icons/pi";
 import useAuth from "../hooks/useAuth";
 import useModerator from "../hooks/useModerator";
-import { IoLibraryOutline, IoPerson, IoPersonAdd } from "react-icons/io5";
+import { IoLibraryOutline, IoPerson } from "react-icons/io5";
 import useAdmin from "../hooks/useAdmin";
+import { FaRegMessage } from "react-icons/fa6";
 
 const Sidebar = () => {
 
@@ -53,7 +54,7 @@ const Sidebar = () => {
                                 <Link to='/dashboard/moderator/reviews' className="flex gap-2 items-center"><MdOutlineRateReview className="text-[21px]" /><h1 className="hidden md:flex">Reviews</h1></Link>
                                 <Link to='/dashboard/moderator/appliedScholarships' className="flex gap-2 items-center"><IoLibraryOutline className="text-[21px]" /><h1 className="hidden md:flex">Applied Scholarships</h1></Link>
                                 <Link to='/dashboard/moderator/addScholarships' className="flex gap-2 items-center"><MdLibraryAdd className="text-[21px]" /><h1 className="hidden md:flex">Add Scholarships</h1></Link>
-
+                                <Link to='/dashboard/moderator/message' className="flex gap-2 items-center"><FaRegMessage className="text-[20px]" /><h1 className="hidden md:flex">Message</h1></Link>
                             </div>
                         </div>
                     </nav>

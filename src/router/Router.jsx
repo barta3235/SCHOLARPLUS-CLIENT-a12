@@ -27,6 +27,7 @@ import ManageScholarshipAdmin from "../pages/Admin/ManageScholarshipAdmin";
 import AppliedScholarshipsAdmin from "../pages/Admin/AppliedScholarshipsAdmin";
 import ReviewsAdmin from "../pages/Admin/ReviewsAdmin";
 import ManageUsersAdmin from "../pages/Admin/ManageUsersAdmin";
+import Message from "../pages/Moderator/Message";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
         {
           path:'moderator/appliedScholarships',
           element:<AppliedScholarships></AppliedScholarships>
+        },
+        {
+          path:'moderator/message',
+          element:<Message></Message>
         }
     ]
   },

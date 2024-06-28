@@ -4,6 +4,9 @@ import { IoIosLogOut } from "react-icons/io";
 import { CiMenuFries } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 const Navbar = () => {
     const { user, logout } = useAuth()
@@ -19,6 +22,10 @@ const Navbar = () => {
             })
     }
 
+    useEffect(()=>{
+        AOS.init({duration:1000})
+    },[])
+
     const navItems = <>
         <li className="flex items-center px-4 -mb-1 border-b-2 font-medium dark:border-"><Link to='/'>Home</Link></li>
         <li className="flex items-center px-4 -mb-1 border-b-2 font-medium dark:border-"><Link to='/allscholarships'>Scholarships</Link></li>
@@ -33,8 +40,8 @@ const Navbar = () => {
                     <div className="flex gap-5 items-center tracking-wider">
                         <div>
                             <Link to='/' className="flex items-center gap-3">
-                                <img className="w-[60px] rounded-lg" src={webLogo} alt="" />
-                                <h1 className="text-3xl font-semibold md:flex hidden gap-2 items-center justify-center tracking-wider">Scholar<span className="text-[36px] font-bold text-yellow-400"><FaPlus /></span></h1>
+                                <img data-aos="fade-right" className="w-[60px] rounded-lg" src={webLogo} alt="" />
+                                <h1 className="text-3xl font-semibold md:flex hidden gap-2 items-center justify-center tracking-wider" data-aos="fade-down"><h1>Scholar</h1><span className="text-[36px] font-bold text-yellow-400"><FaPlus /></span></h1>
                             </Link>
                         </div>
                         <ul className="flex items-center gap-2 md:hidden">
