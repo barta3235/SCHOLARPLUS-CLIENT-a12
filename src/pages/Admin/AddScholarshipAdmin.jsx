@@ -78,7 +78,7 @@ const AddScholarshipAdmin = () => {
     }
 
     return (
-        <div>
+        <div className="mt-[40px]">
             {
                 loading
                     ?
