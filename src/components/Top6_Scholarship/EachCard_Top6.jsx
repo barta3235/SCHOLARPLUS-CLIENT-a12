@@ -41,7 +41,6 @@ const EachCard_Top6 = ({ eachScholarship }) => {
                         <span className="text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-3 flex items-center gap-2"><IoLocationOutline className="text-[18px]" /><h1>City: {city}</h1></span>
                         <hr className="my-3" />
                         <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-3">Application Deadline: {applicationdeadline}</span>
-                        <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-600 mb-3">Rating: </span>
                         <hr className="my-3" />
 
                     </div>
