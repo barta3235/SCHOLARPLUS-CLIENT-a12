@@ -21,7 +21,7 @@ const Analytics = () => {
             {
                 analytics1
                     ?
-                    <div>
+                    <div className="bg-yellow-50">
                         <section className=" dark:bg-gray-100 dark:text-gray-800 border-t-yellow-300 border-t-2 pt-2 md:border-t-0">
                             <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
                                 <div className="flex p-2 space-x-2  rounded-lg md:space-x-4 dark:bg-gray-50 dark:text-gray-800">

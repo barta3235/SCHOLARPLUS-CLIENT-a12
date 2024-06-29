@@ -89,26 +89,29 @@ const Analytics2 = () => {
             {
                 allScholarship
                     ?
-                    <BarChart
-                        width={900}
-                        height={700}
-                        data={allScholarship}
-                        margin={{
-                            top: 20,
-                            right: 30,
-                            left: 20,
-                            bottom: 5,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="universityname" angle={-50} textAnchor="end" height={230} interval={0} />
-                        <YAxis label={{ value: 'Tuition Fee', angle: -90, position: 'insideLeft', dy: 10, dx:-15 }} />
-                        <Bar dataKey="tuitionfee" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
-                            {allScholarship?.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-                            ))}
-                        </Bar>
-                    </BarChart>
+                    <div>
+                        <h1 className='mb-2 text-center font-medium text-[20px] pt-1'>University and corresponding Tuition Fee Structure</h1>
+                        <BarChart
+                            width={900}
+                            height={700}
+                            data={allScholarship}
+                            margin={{
+                                top: 20,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="universityname" angle={-50} textAnchor="end" height={230} interval={0} />
+                            <YAxis label={{ value: 'Tuition Fee', angle: -90, position: 'insideLeft', dy: 10, dx: -15 }} />
+                            <Bar dataKey="tuitionfee" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                                {allScholarship?.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                                ))}
+                            </Bar>
+                        </BarChart>
+                    </div>
                     :
                     <div className="flex items-center justify-center">
                         <span className="loading loading-bars loading-md text-yellow-300"></span>
