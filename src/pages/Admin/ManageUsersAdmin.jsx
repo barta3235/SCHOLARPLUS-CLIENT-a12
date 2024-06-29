@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { MdDelete } from "react-icons/md";
-import { RiAdminFill } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const ManageUsersAdmin = () => {
     const axiosSecure = useAxiosSecure();
+    const [role,setRole]=useState('all');
 
     const { data: allUsers, refetch } = useQuery({
-        queryKey: ['allUsers'],
+        queryKey: ['allUsers',role],
         queryFn: async () => {
-            const res = await axiosSecure.get('/allUsersByAdmin')
+            const res = await axiosSecure.get(`/allUsersByAdmin?role=${role}`)
             return res?.data;
         }
     })
@@ -40,7 +41,7 @@ const ManageUsersAdmin = () => {
 
     }
 
-    const handleDelete=(id)=>{
+    const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -64,13 +65,34 @@ const ManageUsersAdmin = () => {
         });
     }
 
+    const handleFilter=(role)=>{
+          console.log(role);
+          setRole(role);
+          refetch();
+    }
+
+
     return (
         <div className="mt-[40px]">
             {
                 allUsers
                     ?
                     <div>
-                        <h1 className="py-1 px-2 rounded-full text-xs mb-[30px] bg-white w-[100px] border-2 border-yellow-300 text-center font-medium">Applied - {allUsers.length}</h1>
+                        <div className="flex flex-col md:flex-row mb-5 justify-between">
+                            <h1 className="py-1  px-2 rounded-full text-xs mb-[30px] bg-white w-[100px] border-2 border-yellow-300 text-center font-medium">Applied - {allUsers.length}</h1>
+                            {/* filter by user role */}
+
+                            <div>
+                                <details className="dropdown cursor-pointer">
+                                    <summary className="border rounded-full px-2 py-1 m-1">Filter by Roles</summary>
+                                    <ul className="menu dropdown-content bg-white rounded-box z-[1] w-52 p-2 shadow">
+                                        <li className="hover:bg-yellow-200" onClick={()=>handleFilter('moderator')}><a>Moderator</a></li>
+                                        <li className="hover:bg-yellow-200" onClick={()=>handleFilter('admin')} ><a>Admin</a></li>
+                                        <li className="hover:bg-yellow-200" onClick={()=>handleFilter('all')}><a>All</a></li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
                         <div className="overflow-x-auto">
                             <table className="table text-center">
                                 {/* head */}
