@@ -45,7 +45,7 @@ const Analytics3 = () => {
             {
                 data
                     ?
-                    <div className="flex flex-col justify-center items-center bg-yellow-50">
+                    <div className="flex flex-col justify-center items-center bg-yellow-50 shadow-lg">
                         <h1 className='mb-2 text-center font-medium text-[20px] pt-1'>Top 4 most applied university for scholarship</h1>
                         <PieChart width={300} height={325}>
                             <Pie

@@ -22,7 +22,7 @@ const Footer = () => {
                         </a>
                     </div>
                     <div className="col-span-6 md:text-left md:col-span-3 text-start mt-[15px] font-medium">
-                        <ul className="flex flex-col md:flex-row justify-around tracking-wide">
+                        <ul className="flex flex-col md:flex-row justify-around md:gap-2 tracking-wide">
                             <li className="mb-[7px]">
                                 <Link to="/">Home</Link>
                             </li>

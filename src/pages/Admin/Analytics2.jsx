@@ -85,7 +85,7 @@ const Analytics2 = () => {
 
 
     return (
-        <div className='bg-yellow-50'>
+        <div className='bg-yellow-50 shadow-lg'>
             {
                 allScholarship
                     ?

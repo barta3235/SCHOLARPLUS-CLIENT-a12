@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       {
         path: 'scholarshipDetails/:id',
         element: <UserPrivateRoute><ScholarshipDetails></ScholarshipDetails></UserPrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/allScholarship/${params.id}`)
+        loader:({params})=>fetch(`https://m12-a12-server.vercel.app/allScholarship/${params.id}`)
       },
       {
          path: 'toPaymentFromDetail/:id',

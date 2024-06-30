@@ -27,7 +27,7 @@ const MyProfile = () => {
         <div className="flex flex-col md:flex-row md:gap-[50px] mt-[40px] overflow-x-auto">
 
             <div className="flex md:flex-col flex-row gap-[50px]">
-                <div className="ml-[5px] bg-yellow-50 p-2">
+                <div className="ml-[5px] bg-yellow-50 p-2 shadow-lg">
                     <div className="mb-[60px]">
                         <h1 className="text-[20px] md:text-[25px] mb-[17px] font-medium tracking-wider">Hello, <span className="border-b-[3px] border-yellow-300">{user?.displayName}</span></h1>
                     </div>
@@ -59,7 +59,7 @@ const MyProfile = () => {
                             ''
                     }
                 </div>
-                <div className="border-l-2 border-l-yellow-300 pl-2 border-b-2 border-b-yellow-300 md:border-l-0 md:border-b-0 md:border-t-2 md:border-t-yellow-300 md:pt-2">
+                <div className="border-l-2 border-l-yellow-300 pl-2 border-b-2 border-b-yellow-300 md:border-l-0 md:border-b-0 md:border-t-2 md:border-t-yellow-300 md:pt-2 px-1 shadow-lg">
                     {
                         userFromDb?.role === 'admin'
                             ?

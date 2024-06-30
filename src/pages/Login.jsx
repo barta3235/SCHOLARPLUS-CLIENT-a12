@@ -4,35 +4,39 @@ import SocialLogin from "../components/SocialLogin";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { VscLoading } from "react-icons/vsc";
 
 
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const {signInUser}=useAuth();
-    const [errorLogin,setErrorLogin]=useState('');
-    const location=useLocation();
-    const navigate=useNavigate();
+    const { signInUser } = useAuth();
+    const [errorLogin, setErrorLogin] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const onSubmit = data => {
-        signInUser(data.email,data.password)
-        .then(()=>{
-            Swal.fire({
-                icon: "success",
-                title: `Log in successful`,
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate(location.state? location.state :'/')
-        })
-        .catch((error)=>{
-            if(error.message==='Firebase: Error (auth/invalid-credential).'){
-                setErrorLogin('Invalid email or password');
-            }else{
-                setErrorLogin(error.message);
-            }
-            
-        })
+        setLoading(true);
+        signInUser(data.email, data.password)
+            .then(() => {
+                Swal.fire({
+                    icon: "success",
+                    title: `Log in successful`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setLoading(false);
+                navigate(location.state ? location.state : '/')
+            })
+            .catch((error) => {
+                if (error.message === 'Firebase: Error (auth/invalid-credential).') {
+                    setErrorLogin('Invalid email or password');
+                } else {
+                    setErrorLogin(error.message);
+                }
+
+            })
     }
 
 
@@ -62,10 +66,13 @@ const Login = () => {
                         </div>
                     </div>
                     <div className="space-y-2">
+
                         <div>
                             <input type="submit" value='Log in' className="w-full px-8 py-3 font-semibold border rounded-lg shadow-md hover:border-2 cursor-pointer hover:border-yellow-300"></input>
                             <p className="pt-[5px] text-[12px] font-medium text-red-700">{errorLogin}</p>
                         </div>
+
+
                         <div>
                             <div className="divider">Or</div>
                         </div>
