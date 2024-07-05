@@ -3,6 +3,7 @@
 ### The APIs are secured using JWT tokens and interceptors.
 
 ### LIVE LINK: https://m12-a12-scholarplus.web.app/
+### Server Side: https://github.com/barta3235/SCHOLARPLUS-SERVER-a12
 
 
 
